@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/corner_round"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/deleteButton"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/bomb_delete"
+        android:padding="20dp"
+        android:layout_alignParentEnd="true"
+        android:background="@null"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:paddingLeft="74dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:id="@+id/foregroundLayout"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
+
+    <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColorHighlight="@color/colorPrimary"
+                    android:text="@string/currency_label"/>
+                <TextView
+                    android:id="@+id/currency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColorHighlight="@color/colorPrimary"
+            android:text="@string/language_label"/>
+        <TextView
+            android:id="@+id/language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

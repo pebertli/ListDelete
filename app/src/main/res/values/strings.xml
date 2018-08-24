@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ListDelete</string>
+    <string name="action_settings">Settings</string>
+    <string name="empty_view">No Results. Try to update</string>
+    <string name="language_label">"Language: "</string>
+    <string name="currency_label">"Currency: "</string>
+</resources>
