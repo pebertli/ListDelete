@@ -13,7 +13,10 @@ import com.pebertli.listdelete.R;
 import com.pebertli.listdelete.adapters.CountriesAdapter.CountryViewHolder;
 import com.pebertli.listdelete.models.Country;
 
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class SwipeRowHelper
 {
@@ -31,6 +34,8 @@ public class SwipeRowHelper
 
     public RecyclerView recyclerView;
     public List<Country> rows;
+
+
 
     public SwipeRowHelper(RecyclerView recyclerView, List<Country> rows, float xDPFactor)
     {
@@ -50,7 +55,7 @@ public class SwipeRowHelper
         return new SwipeButtonClickListener(holder);
     }
 
-    private void animateAndRemoveItem(View v, final int position)
+    private void animateAndRemoveItem(View v, final CountryViewHolder holder)
     {
         recyclerView.setEnabled(false);
         ((View)v.getParent()).animate().setDuration(SWIPE_DURATION).alpha(0);
@@ -58,8 +63,9 @@ public class SwipeRowHelper
             @Override
             public void run()
             {
-                rows.remove(position);
-                recyclerView.getAdapter().notifyItemRemoved(position);
+                int p = holder.getAdapterPosition();
+                rows.remove(p);
+                recyclerView.getAdapter().notifyItemRemoved(p);
                 recyclerView.setEnabled(true);
             }
         });
@@ -98,7 +104,7 @@ public class SwipeRowHelper
             if(currentRow != null)
             {
                 currentRow = null;
-                animateAndRemoveItem(holder.itemView.findViewById(R.id.foregroundLayout), holder.getAdapterPosition());
+                animateAndRemoveItem(holder.itemView.findViewById(R.id.foregroundLayout), holder);
             }
         }
     }
@@ -221,7 +227,7 @@ public class SwipeRowHelper
                             animate(v, SWIPE_DURATION, backToThis, 1);
                         else//marked to be removed, so remove it
                         {
-                            animateAndRemoveItem(v, holder.getAdapterPosition());
+                            animateAndRemoveItem(v, holder);
                             currentRow = null;
                         }
                         remove = false;
