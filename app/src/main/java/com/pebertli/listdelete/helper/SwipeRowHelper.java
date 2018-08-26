@@ -27,6 +27,7 @@ public class SwipeRowHelper
     private float xDPFactor;
 
     private View currentRow = null;
+    private boolean touched = false; //forbidden multitouch
 
     public RecyclerView recyclerView;
     public List<Country> rows;
@@ -121,10 +122,15 @@ public class SwipeRowHelper
 
         @Override
         public boolean onTouch(final View v, MotionEvent event) {
+            int aa = event.getPointerCount();
             event.offsetLocation(v.getTranslationX(),0); //fix the movement for calculation of velocity
 
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
+                    if(touched)
+                        return false;
+                    else
+                        touched = true;
                     lastX = event.getRawX();
                     firstPressedX = event.getRawX();
                     if(velocityTracker == null)
@@ -144,6 +150,7 @@ public class SwipeRowHelper
                 case MotionEvent.ACTION_CANCEL:
                     //cancel the last swiped row if scroll or cancel the movement
                     moving = false;
+                    touched = false;
                     animate(v, SWIPE_DURATION, 0, 1);
                     currentRow = null;
                     velocityTracker.clear();
@@ -160,7 +167,7 @@ public class SwipeRowHelper
                         {
                             moving = true;
                             velocityTracker.clear(); //reset tracker
-                            recyclerView.requestDisallowInterceptTouchEvent(true); //forbiden overall touch (and scroll)
+                            recyclerView.requestDisallowInterceptTouchEvent(true); //forbidden overall touch (and scroll)
                         }
                     }
                     float newPos = v.getX()+delta; //current position plus the touch movement
@@ -185,6 +192,7 @@ public class SwipeRowHelper
                 break;
                 case MotionEvent.ACTION_UP:
                 {
+                    touched = false;
                     if (moving)//is swiping
                     {
                         float x = event.getX() + v.getTranslationX();
