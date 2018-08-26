@@ -122,7 +122,6 @@ public class SwipeRowHelper
 
         @Override
         public boolean onTouch(final View v, MotionEvent event) {
-            int aa = event.getPointerCount();
             event.offsetLocation(v.getTranslationX(),0); //fix the movement for calculation of velocity
 
             switch (event.getAction()) {
