@@ -21,7 +21,7 @@ import java.util.Queue;
 public class SwipeRowHelper
 {
     private static final int SWIPE_DURATION = 200;//in milliseconds
-    private static final int SWIPE_SPEED = -2000; //... pixels per second to left //higher absolute values demand a faster swipe
+    private static final int SWIPE_SPEED = -1000; //... pixels per second to left //higher absolute values demand a faster swipe
     private static final int SWIPE_SPEED_UNIT = 1000; //pixels per second
     private static final int ANCHOR_POINT = 70;//in dp
 
